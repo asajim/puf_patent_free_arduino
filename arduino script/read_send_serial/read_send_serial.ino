@@ -69,10 +69,26 @@ int pin_mosfet = 12;
 //int power = 2;
 //int transistor = 12;
 
+static int Serial_write(char c, FILE *) {
+    if (c == '\n') Serial.write('\r');  // convert LF -> CRLF
+    return Serial.write(c);
+}
+
+static FILE mystdout;
+
+ char* itob(uint32_t val, char* buf, size_t n)
+{
+  char* bp = buf + n;
+  do {
+    *--bp = (val % 10) + '0';
+    val = val / 10;
+  } while (bp != buf);
+  return (buf);
+}
+
 void setup(void) 
 {
   Serial.begin(9600);
-//  SPI.begin();
 
   delay(500);
 
@@ -81,24 +97,10 @@ void setup(void)
   pinMode(pin_hold, OUTPUT);
   pinMode(pin_mosfet, OUTPUT);
 
-//  pinMode(power, OUTPUT);    
-//  pinMode(transistor, OUTPUT);     
-//  digitalWrite(power, HIGH);
+  stdout = &mystdout;
+  fdev_setup_stream(stdout, Serial_write, NULL, _FDEV_SETUP_WRITE);
 
-//  digitalWrite(pin_mosfet, LOW);
 //  readSRAM();
-//  SPI.end();  
-
-//  digitalWrite(pin_select, HIGH);
-//  digitalWrite(pin_hold, HIGH);
-
-//  delay(500);
-
-//  pinMode(52, OUTPUT);
-//  digitalWrite(52, HIGH);
-//
-//  pinMode(51, OUTPUT);
-//  digitalWrite(51, HIGH);
 }
 
 void readSRAM(){
@@ -113,7 +115,7 @@ void readSRAM(){
 //    index = 0;
 //    for (i = 0; i < 128; i++) 
 //    {
-//      Spi23LC1024Write32(j*128+i, (uint8_t) 6, cs_pin);
+//      Spi23LC1024Write32(j*128+i, (uint8_t) 1, cs_pin);
 //    }
 //  }
    
@@ -130,12 +132,21 @@ void readSRAM(){
       index += 32;
     }
 
-    i = 0;
 //    for (i = 0; i< index; i++){
 //      Serial.println(total_buff[i], HEX);
 //    }
-    for (i = 0; i< index; i=i+4){
-      Serial.println((uint32_t) total_buff[i] << 24 | (uint32_t) total_buff[i+1] << 16 | (uint32_t) total_buff[i+2] << 8 | total_buff[i+3], HEX);
+    
+//    for (i = 0; i< index; i=i+4){
+//      uint32_t r = ((uint32_t) total_buff[i] << 24 | (uint32_t) total_buff[i+1] << 16 | (uint32_t) total_buff[i+2] << 8 | total_buff[i+3]);
+//      Serial.println(r, HEX);
+//      printf("%08x", r);
+//      printf("\n");
+//    }
+
+    for (i = 0; i< index; i++){
+      printf("%02x", total_buff[i]);
+//      if (i!=0 && (i+1)%4==0)
+//        printf("\n");
     }
 
 //    for (i = 0; i< index; i=i+8){
@@ -157,8 +168,10 @@ void readSRAM(){
   pinMode(51, OUTPUT);
   digitalWrite(51, HIGH);
 
+  stdout = &mystdout;
+    fdev_setup_stream(stdout, Serial_write, NULL, _FDEV_SETUP_WRITE);
 }
- 
+
 void loop() 
 {
 //    digitalWrite(pin_mosfet, HIGH);   // turn the LED on (HIGH is the voltage level)
