@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/SerialServer.dir/main3.cpp.o CMakeFiles/SerialServer.dir/Tools.cpp.o CMakeFiles/SerialServer.dir/BCH.cpp.o  -o SerialServer 

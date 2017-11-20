@@ -1,0 +1,3 @@
+/home/ade/CLionProjects/SerialServer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ade/CLionProjects/SerialServer/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ade/CLionProjects/SerialServer/cmake-build-debug/CMakeFiles/SerialServer.dir
