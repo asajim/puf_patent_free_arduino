@@ -8,7 +8,7 @@ CMakeFiles/PUFcpp_int.dir/Tools.cpp.o: ../BCH.h
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.o: ../Tools.cpp
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.o: ../Tools.h
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.o: ../BCH.h
-CMakeFiles/PUFcpp_int.dir/main.cpp.o: ../Tools.h
-CMakeFiles/PUFcpp_int.dir/main.cpp.o: ../main.cpp
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o: ../BCH.h
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o: ../Tools.h
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o: ../main2.cpp
 

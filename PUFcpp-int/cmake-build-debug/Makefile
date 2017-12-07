@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ades17/CLionProjects/PUFcpp-int
+CMAKE_SOURCE_DIR = /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,32 +177,32 @@ Tools.cpp.s:
 	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/Tools.cpp.s
 .PHONY : Tools.cpp.s
 
-main.o: main.cpp.o
+main2.o: main2.cpp.o
 
-.PHONY : main.o
+.PHONY : main2.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main.cpp.o
-.PHONY : main.cpp.o
+main2.cpp.o:
+	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main2.cpp.o
+.PHONY : main2.cpp.o
 
-main.i: main.cpp.i
+main2.i: main2.cpp.i
 
-.PHONY : main.i
+.PHONY : main2.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main.cpp.i
-.PHONY : main.cpp.i
+main2.cpp.i:
+	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main2.cpp.i
+.PHONY : main2.cpp.i
 
-main.s: main.cpp.s
+main2.s: main2.cpp.s
 
-.PHONY : main.s
+.PHONY : main2.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main.cpp.s
-.PHONY : main.cpp.s
+main2.cpp.s:
+	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main2.cpp.s
+.PHONY : main2.cpp.s
 
 # Help Target
 help:
@@ -219,9 +219,9 @@ help:
 	@echo "... Tools.o"
 	@echo "... Tools.i"
 	@echo "... Tools.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... main2.o"
+	@echo "... main2.i"
+	@echo "... main2.s"
 .PHONY : help
 
 

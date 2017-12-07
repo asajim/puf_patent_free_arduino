@@ -43,10 +43,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/ades17/CLionProjects/PUFcpp-int
+CMAKE_SOURCE_DIR = /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PUFcpp_int.dir/depend.make
@@ -57,42 +57,42 @@ include CMakeFiles/PUFcpp_int.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/PUFcpp_int.dir/flags.make
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.o: CMakeFiles/PUFcpp_int.dir/flags.make
-CMakeFiles/PUFcpp_int.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PUFcpp_int.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PUFcpp_int.dir/main.cpp.o -c /Users/ades17/CLionProjects/PUFcpp-int/main.cpp
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o: CMakeFiles/PUFcpp_int.dir/flags.make
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o: ../main2.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/PUFcpp_int.dir/main2.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PUFcpp_int.dir/main2.cpp.o -c /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/main2.cpp
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PUFcpp_int.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ades17/CLionProjects/PUFcpp-int/main.cpp > CMakeFiles/PUFcpp_int.dir/main.cpp.i
+CMakeFiles/PUFcpp_int.dir/main2.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PUFcpp_int.dir/main2.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/main2.cpp > CMakeFiles/PUFcpp_int.dir/main2.cpp.i
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PUFcpp_int.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ades17/CLionProjects/PUFcpp-int/main.cpp -o CMakeFiles/PUFcpp_int.dir/main.cpp.s
+CMakeFiles/PUFcpp_int.dir/main2.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PUFcpp_int.dir/main2.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/main2.cpp -o CMakeFiles/PUFcpp_int.dir/main2.cpp.s
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.o.requires:
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o.requires:
 
-.PHONY : CMakeFiles/PUFcpp_int.dir/main.cpp.o.requires
+.PHONY : CMakeFiles/PUFcpp_int.dir/main2.cpp.o.requires
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.o.provides: CMakeFiles/PUFcpp_int.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/PUFcpp_int.dir/main.cpp.o.provides
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o.provides: CMakeFiles/PUFcpp_int.dir/main2.cpp.o.requires
+	$(MAKE) -f CMakeFiles/PUFcpp_int.dir/build.make CMakeFiles/PUFcpp_int.dir/main2.cpp.o.provides.build
+.PHONY : CMakeFiles/PUFcpp_int.dir/main2.cpp.o.provides
 
-CMakeFiles/PUFcpp_int.dir/main.cpp.o.provides.build: CMakeFiles/PUFcpp_int.dir/main.cpp.o
+CMakeFiles/PUFcpp_int.dir/main2.cpp.o.provides.build: CMakeFiles/PUFcpp_int.dir/main2.cpp.o
 
 
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.o: CMakeFiles/PUFcpp_int.dir/flags.make
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.o: ../Tools.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PUFcpp_int.dir/Tools.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PUFcpp_int.dir/Tools.cpp.o -c /Users/ades17/CLionProjects/PUFcpp-int/Tools.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/PUFcpp_int.dir/Tools.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PUFcpp_int.dir/Tools.cpp.o -c /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/Tools.cpp
 
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PUFcpp_int.dir/Tools.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ades17/CLionProjects/PUFcpp-int/Tools.cpp > CMakeFiles/PUFcpp_int.dir/Tools.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/Tools.cpp > CMakeFiles/PUFcpp_int.dir/Tools.cpp.i
 
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PUFcpp_int.dir/Tools.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ades17/CLionProjects/PUFcpp-int/Tools.cpp -o CMakeFiles/PUFcpp_int.dir/Tools.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/Tools.cpp -o CMakeFiles/PUFcpp_int.dir/Tools.cpp.s
 
 CMakeFiles/PUFcpp_int.dir/Tools.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/PUFcpp_int.dir/Tools.cpp.o.provides.build: CMakeFiles/PUFcpp_int.dir/
 
 CMakeFiles/PUFcpp_int.dir/BCH.cpp.o: CMakeFiles/PUFcpp_int.dir/flags.make
 CMakeFiles/PUFcpp_int.dir/BCH.cpp.o: ../BCH.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PUFcpp_int.dir/BCH.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PUFcpp_int.dir/BCH.cpp.o -c /Users/ades17/CLionProjects/PUFcpp-int/BCH.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PUFcpp_int.dir/BCH.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PUFcpp_int.dir/BCH.cpp.o -c /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/BCH.cpp
 
 CMakeFiles/PUFcpp_int.dir/BCH.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PUFcpp_int.dir/BCH.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ades17/CLionProjects/PUFcpp-int/BCH.cpp > CMakeFiles/PUFcpp_int.dir/BCH.cpp.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/BCH.cpp > CMakeFiles/PUFcpp_int.dir/BCH.cpp.i
 
 CMakeFiles/PUFcpp_int.dir/BCH.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PUFcpp_int.dir/BCH.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ades17/CLionProjects/PUFcpp-int/BCH.cpp -o CMakeFiles/PUFcpp_int.dir/BCH.cpp.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/BCH.cpp -o CMakeFiles/PUFcpp_int.dir/BCH.cpp.s
 
 CMakeFiles/PUFcpp_int.dir/BCH.cpp.o.requires:
 
@@ -131,19 +131,19 @@ CMakeFiles/PUFcpp_int.dir/BCH.cpp.o.provides.build: CMakeFiles/PUFcpp_int.dir/BC
 
 # Object files for target PUFcpp_int
 PUFcpp_int_OBJECTS = \
-"CMakeFiles/PUFcpp_int.dir/main.cpp.o" \
+"CMakeFiles/PUFcpp_int.dir/main2.cpp.o" \
 "CMakeFiles/PUFcpp_int.dir/Tools.cpp.o" \
 "CMakeFiles/PUFcpp_int.dir/BCH.cpp.o"
 
 # External object files for target PUFcpp_int
 PUFcpp_int_EXTERNAL_OBJECTS =
 
-PUFcpp_int: CMakeFiles/PUFcpp_int.dir/main.cpp.o
+PUFcpp_int: CMakeFiles/PUFcpp_int.dir/main2.cpp.o
 PUFcpp_int: CMakeFiles/PUFcpp_int.dir/Tools.cpp.o
 PUFcpp_int: CMakeFiles/PUFcpp_int.dir/BCH.cpp.o
 PUFcpp_int: CMakeFiles/PUFcpp_int.dir/build.make
 PUFcpp_int: CMakeFiles/PUFcpp_int.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable PUFcpp_int"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable PUFcpp_int"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PUFcpp_int.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -151,7 +151,7 @@ CMakeFiles/PUFcpp_int.dir/build: PUFcpp_int
 
 .PHONY : CMakeFiles/PUFcpp_int.dir/build
 
-CMakeFiles/PUFcpp_int.dir/requires: CMakeFiles/PUFcpp_int.dir/main.cpp.o.requires
+CMakeFiles/PUFcpp_int.dir/requires: CMakeFiles/PUFcpp_int.dir/main2.cpp.o.requires
 CMakeFiles/PUFcpp_int.dir/requires: CMakeFiles/PUFcpp_int.dir/Tools.cpp.o.requires
 CMakeFiles/PUFcpp_int.dir/requires: CMakeFiles/PUFcpp_int.dir/BCH.cpp.o.requires
 
@@ -162,6 +162,6 @@ CMakeFiles/PUFcpp_int.dir/clean:
 .PHONY : CMakeFiles/PUFcpp_int.dir/clean
 
 CMakeFiles/PUFcpp_int.dir/depend:
-	cd /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ades17/CLionProjects/PUFcpp-int /Users/ades17/CLionProjects/PUFcpp-int /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug /Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/CMakeFiles/PUFcpp_int.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/CMakeFiles/PUFcpp_int.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/PUFcpp_int.dir/depend
 

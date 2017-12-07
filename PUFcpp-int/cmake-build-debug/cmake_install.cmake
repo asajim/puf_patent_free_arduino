@@ -1,4 +1,4 @@
-# Install script for directory: /Users/ades17/CLionProjects/PUFcpp-int
+# Install script for directory: /Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/ades17/CLionProjects/PUFcpp-int/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/ades17/Documents/Thesis/Software/puf_patent_free_arduino/PUFcpp-int/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
