@@ -86,6 +86,15 @@ BCH::generate_gf()
         index_of[alpha_to[i]] = i;
     }
     index_of[0] = -1;
+
+    for (int i=0;i<pow(2,m);i++){
+        printf("%d, ", alpha_to[i]);
+    }
+    printf("\n");
+    for (int i=0;i<pow(2,m);i++){
+        printf("%d, ", index_of[i]);
+    }
+    printf("\n");
 }
 
 
@@ -181,6 +190,12 @@ BCH::gen_poly()
                 g[jj] = g[jj - 1];
         g[0] = alpha_to[(index_of[g[0]] + zeros[ii]) % n];
     }
+
+    for (int i=0;i<pow(2,m);i++){
+        printf("%d, ", g[i]);
+    }
+    printf("\n");
+
 }
 
 

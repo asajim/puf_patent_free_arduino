@@ -88,7 +88,7 @@ BCH::generate_gf()
     index_of[0] = -1;
 
 //    for (i=0;i<pow(2,m);i++)
-//        printf("%d %d\n", alpha_to[i], index_of[i]);
+//        Serial.print("%d %d\n", alpha_to[i], index_of[i]);
 }
 
 
@@ -114,8 +114,9 @@ BCH::gen_poly()
     size[1] = 1;
     jj = 1;			/* cycle set index */
     if (m > 9)  {
-        printf("Computing cycle sets modulo %d\n", n);
-        printf("(This may take some time)...\n");
+        Serial.print("Computing cycle sets modulo ");
+        Serial.println(n);
+        Serial.print("(This may take some time)...\n");
     }
     do {
         /* Generate the jj-th cycle set */
@@ -176,11 +177,11 @@ BCH::gen_poly()
 
     if (k<0)
     {
-        printf("Parameters invalid!\n");
+        Serial.print("Parameters invalid!\n");
         exit(0);
     }
 
-//    printf("This is a (%d, %d, %d) binary BCH code\n", n, k, d);
+//    Serial.print("This is a (%d, %d, %d) binary BCH code\n", n, k, d);
 
     /* Compute the generator polynomial */
     g[0] = alpha_to[zeros[1]];
@@ -194,11 +195,13 @@ BCH::gen_poly()
                 g[jj] = g[jj - 1];
         g[0] = alpha_to[(index_of[g[0]] + zeros[ii]) % n];
     }
-
-    // free(cycle);
-    // free(size);
-    // free(min);
-    // free(zeros);
+//    Serial.print("Generator polynomial:\ng(x) = ");
+//    for (ii = 0; ii <= rdncy; ii++) {
+//        Serial.print("%d", g[ii]);
+//        if (ii && ((ii % 50) == 0))
+//            Serial.print("\n");
+//    }
+//    Serial.print("\n");
 }
 
 
@@ -231,6 +234,9 @@ BCH::encode_bch(const int8_t *input, int8_t *result)
             bb[0] = 0;
         }
     }
+
+//    for (int i=0;i<1000;i++)
+//        Serial.print("%d ", bb[i]);
 
     memcpy(result, bb, sizeof(int8_t) * (n - k));
     memcpy(&result[n - k], input, sizeof(int8_t) * k);
@@ -265,10 +271,155 @@ BCH::decode_bch(int8_t *input, int8_t *result)
     register int8_t i, j, u, q, t2, count = 0, syn_error = 0;
     int8_t elp[(int)pow(2,m)+2][(int)pow(2,m)], d[(int)pow(2,m)+2], l[(int)pow(2,m)+2], u_lu[(int)pow(2,m)+2], s[(int)pow(2,m)+1];
     int8_t root[200], loc[200], err[(int)pow(2,m)], reg[201];
+//
+//    t2 = 2 * t;
+//
+//    /* first form the syndromes */
+//    for (i = 1; i <= t2; i++) {
+//        s[i] = 0;
+//        for (j = 0; j < n; j++)
+//            if (input[j] != 0)
+//                s[i] ^= alpha_to[(i * j) % n];
+//        if (s[i] != 0)
+//            syn_error = 1; /* set error flag if non-zero syndrome */
+//        /* convert syndrome from polynomial form to index form  */
+//        s[i] = index_of[s[i]];
+//    }
+//
+//    if (syn_error) {    /* if there are errors, try to correct them */
+//        /*
+//         * Compute the error location polynomial via the Berlekamp
+//         * iterative algorithm. Following the terminology of Lin and
+//         * Costello's book :   d[u] is the 'mu'th discrepancy, where
+//         * u='mu'+1 and 'mu' (the Greek letter!) is the step number
+//         * ranging from -1 to 2*t (see L&C),  l[u] is the degree of
+//         * the elp at that step, and u_l[u] is the difference between
+//         * the step number and the degree of the elp.
+//         */
+//        /* initialise table entries */
+//        d[0] = 0;            /* index form */
+//        d[1] = s[1];        /* index form */
+//        elp[0][0] = 0;        /* index form */
+//        elp[1][0] = 1;        /* polynomial form */
+//        for (i = 1; i < t2; i++) {
+//            elp[0][i] = -1;    /* index form */
+//            elp[1][i] = 0;    /* polynomial form */
+//        }
+//        l[0] = 0;
+//        l[1] = 0;
+//        u_lu[0] = -1;
+//        u_lu[1] = 0;
+//        u = 0;
+//
+//        do {
+//            u++;
+//            if (d[u] == -1) {
+//                l[u + 1] = l[u];
+//                for (i = 0; i <= l[u]; i++) {
+//                    elp[u + 1][i] = elp[u][i];
+//                    elp[u][i] = index_of[elp[u][i]];
+//                }
+//            } else
+//                /*
+//                 * search for words with greatest u_lu[q] for
+//                 * which d[q]!=0
+//                 */
+//            {
+//                q = u - 1;
+//                while ((d[q] == -1) && (q > 0))
+//                    q--;
+//                /* have found first non-zero d[q]  */
+//                if (q > 0) {
+//                    j = q;
+//                    do {
+//                        j--;
+//                        if ((d[j] != -1) && (u_lu[q] < u_lu[j]))
+//                            q = j;
+//                    } while (j > 0);
+//                }
+//
+//                /*
+//                 * have now found q such that d[u]!=0 and
+//                 * u_lu[q] is maximum
+//                 */
+//                /* store degree of new elp polynomial */
+//                if (l[u] > l[q] + u - q)
+//                    l[u + 1] = l[u];
+//                else
+//                    l[u + 1] = l[q] + u - q;
+//
+//                /* form new elp(x) */
+//                for (i = 0; i < t2; i++)
+//                    elp[u + 1][i] = 0;
+//                for (i = 0; i <= l[q]; i++)
+//                    if (elp[q][i] != -1)
+//                        elp[u + 1][i + u - q] =
+//                                alpha_to[(d[u] + n - d[q] + elp[q][i]) % n];
+//                for (i = 0; i <= l[u]; i++) {
+//                    elp[u + 1][i] ^= elp[u][i];
+//                    elp[u][i] = index_of[elp[u][i]];
+//                }
+//            }
+//            u_lu[u + 1] = u - l[u + 1];
+//
+//            /* form (u+1)th discrepancy */
+//            if (u < t2) {
+//                /* no discrepancy computed on last iteration */
+//                if (s[u + 1] != -1)
+//                    d[u + 1] = alpha_to[s[u + 1]];
+//                else
+//                    d[u + 1] = 0;
+//                for (i = 1; i <= l[u + 1]; i++)
+//                    if ((s[u + 1 - i] != -1) && (elp[u + 1][i] != 0))
+//                        d[u + 1] ^= alpha_to[(s[u + 1 - i]
+//                                              + index_of[elp[u + 1][i]]) % n];
+//                /* put d[u+1] into index form */
+//                d[u + 1] = index_of[d[u + 1]];
+//            }
+//        } while ((u < t2) && (l[u + 1] <= t));
+//
+//        u++;
+//        if (l[u] <= t) {/* Can correct errors */
+//            /* put elp into index form */
+//            for (i = 0; i <= l[u]; i++)
+//                elp[u][i] = index_of[elp[u][i]];
+//
+//            /* Chien search: find roots of the error location polynomial */
+//            for (i = 1; i <= l[u]; i++)
+//                reg[i] = elp[u][i];
+//            count = 0;
+//            for (i = 1; i <= n; i++) {
+//                q = 1;
+//                for (j = 1; j <= l[u]; j++)
+//                    if (reg[j] != -1) {
+//                        reg[j] = (reg[j] + j) % n;
+//                        q ^= alpha_to[reg[j]];
+//                    }
+//                if (!q) {    /* store root and error
+//						 * location number indices */
+//                    root[count] = i;
+//                    loc[count] = n - i;
+//                    count++;
+//                }
+//            }
+//            if (count == l[u])
+//                /* no. roots = degree of elp hence <= t errors */
+//                for (i = 0; i < l[u]; i++)
+//                    input[loc[i]] ^= 1;
+//            else    /* elp has degree >t hence cannot solve */
+//                Serial.print("Incomplete decoding: errors detected\n");
+//        }
+//    }
+
+//    register int    i, j, u, q, t2, count = 0, syn_error = 0;
+//    int             elp[1026][1024], d[1026], l[1026], u_lu[1026], s[1025];
+//    int             root[200], loc[200], err[1024], reg[201];
+//    int             recd[1048576];
 
     t2 = 2 * t;
 
     /* first form the syndromes */
+//    Serial.print("S(x) = ");
     for (i = 1; i <= t2; i++) {
         s[i] = 0;
         for (j = 0; j < n; j++)
@@ -282,9 +433,9 @@ BCH::decode_bch(int8_t *input, int8_t *result)
  */
         /* convert syndrome from polynomial form to index form  */
         s[i] = index_of[s[i]];
-//        printf("%3d ", s[i]);
+//        Serial.print("%3d ", s[i]);
     }
-//    printf("\n");
+//    Serial.print("\n");
 
     if (syn_error) {	/* if there are errors, try to correct them */
         /*
@@ -384,11 +535,11 @@ BCH::decode_bch(int8_t *input, int8_t *result)
             for (i = 0; i <= l[u]; i++)
                 elp[u][i] = index_of[elp[u][i]];
 
-//            printf("sigma(x) = ");
+//            Serial.print("sigma(x) = ");
 //            for (i = 0; i <= l[u]; i++)
-//                printf("%3d ", elp[u][i]);
-//            printf("\n");
-//            printf("Roots: ");
+//                Serial.print("%3d ", elp[u][i]);
+//            Serial.print("\n");
+//            Serial.print("Roots: ");
 
             /* Chien search: find roots of the error location polynomial */
             for (i = 1; i <= l[u]; i++)
@@ -406,30 +557,20 @@ BCH::decode_bch(int8_t *input, int8_t *result)
                     root[count] = i;
                     loc[count] = n - i;
                     count++;
-//                    printf("%3d ", n - i);
+//                    Serial.print("%3d ", n - i);
                 }
             }
-//            printf("\n");
+//            Serial.print("\n");
             if (count == l[u])
                 /* no. roots = degree of elp hence <= t errors */
                 for (i = 0; i < l[u]; i++)
                     input[loc[i]] ^= 1;
             else	/* elp has degree >t hence cannot solve */
-                printf("Incomplete decoding: errors detected\n");
+                Serial.print("Incomplete decoding: errors detected\n");
         }
     }
 
     memcpy(result, &input[n - k], sizeof(int8_t) * k);
-
-    // free(elp);
-    // free(d);
-    // free(l);
-    // free(u_lu);
-    // free(s);
-    // free(root);
-    // free(loc);
-    // free(err);
-    // free(reg);
 }
 
 int BCH::get_row() {

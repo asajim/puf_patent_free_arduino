@@ -19,11 +19,17 @@ private:
 //    int t = 109;
 //    int d = 219;
 
-    int8_t m = 4;
-    int8_t n = 15;
-    int8_t k = 5;
-    int8_t t = 3;
-    int8_t d = 7;
+//    int8_t m = 4;
+//    int8_t n = 15;
+//    int8_t k = 5;
+//    int8_t t = 3;
+//    int8_t d = 7;
+
+    int m = 6;
+    uint16_t n = 63;
+    int k = 7;
+    int t = 15;
+    int d = 31;
 
     int *p;
     int *alpha_to;
