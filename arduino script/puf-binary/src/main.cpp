@@ -17,113 +17,74 @@ uint32_t num = 0;
 uint32_t total_send = 10;
 // uint8_t buff[32];
 uint32_t index = 0;
-uint8_t key[256] = {1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0,
-                    1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0,
-                    1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0,
-                    0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0,
-                    0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0,
-                    1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0,
-                    1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0,
-                    0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, };
+uint8_t key_256[] = {0xd2, 0xf, 0x56, 0x56, 0xbf, 0x43, 0x65, 0x16, 0xcd, 0xf, 0x3d, 0x2e, 0x73, 0x48, 0x51, 0xdc,
+                         0x53, 0x7d, 0xf5, 0x18, 0x97, 0x48, 0x41, 0x28, 0xcc, 0xae, 0x67, 0xee, 0x13, 0x10, 0xf6,
+                         0x9b,};
 long puf_index_default[] = {52888, 52920, 53136, 53168, 53384, 53416, 53632, 53664, 75864, 76112, 76360, 76608, 22648, 22896, 23144, 23392, 52952, 53200, 53448, 53696, 22584,
   23080, 23328, 11544, 11792, 12040, 12288, 22616, 22864, 23112, 23360, 33240, 33488, 33736, 33984, 115800, };
-// uint8_t puf_binary_default[] = {
-//   1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1,
-//   0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-//   1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1,
-//   0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0,
-//   0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1,
-//   1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1,
-//   1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,
-//   0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0,
-//   0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0,
-//   0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-//   0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1,
-//   1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1,
-//   0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1,
-//   0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0,
-//   0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-//   1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0,
-//   1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1,
-//   0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1,
-//   1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-//   0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-//   1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0,
-//   1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1,
-//   0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0,
-//   1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0,
-//   1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0,
-//   1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1,
-//   1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1,
-//   1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0,
-//   1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0,
-//   1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0,
-//   0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1,
-//   1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1,
-//   0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
-//   1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0,
-//   0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1,
-//   0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1,
-//   1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
-// };
+  uint8_t puf_binary_default[37*8] = {
+    0x0, 0xFB, 0xFB, 0xFB, 0xFB, 0xFB, 0xFB, 0xFB, 0x62, 0x62, 0x62, 0x62, 0x62, 0x62, 0x62, 0x62, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB, 0xBB,
+                    0x35, 0x35, 0x35, 0x35, 0x35, 0x35, 0x35, 0x35, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x5, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10,
+                    0x87, 0x87, 0x87, 0x87, 0x87, 0x87, 0x87, 0x87, 0xD5, 0xD5, 0xD5, 0xD5, 0xD5, 0xD5, 0xD5, 0xD5, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40,
+                    0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0x43, 0x43, 0x43, 0x43, 0x43, 0x43, 0x43, 0x43, 0xEC, 0xEC, 0xEC, 0xEC, 0xEC, 0xEC, 0xEC, 0xEC,
+                    0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0x34, 0xB5, 0xB5, 0xB5, 0xB5, 0xB5, 0xB5, 0xB5, 0xB5, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1, 0x1,
+                    0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xD1, 0xF9, 0xF9, 0xF9, 0xF9, 0xF9, 0xF9, 0xF9, 0xF9, 0xC6, 0xC6, 0xC6, 0xC6, 0xC6, 0xC6, 0xC6, 0xC6,
+                    0x24, 0x24, 0x24, 0x24, 0x24, 0x24, 0x24, 0x24, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x3E, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40,
+                    0xE9, 0xE9, 0xE9, 0xE9, 0xE9, 0xE9, 0xE9, 0xE9, 0x36, 0x36, 0x36, 0x36, 0x36, 0x36, 0x36, 0x36, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
 
+                    0x31, 0x31, 0x31, 0x31, 0x31, 0x31, 0x31, 0x31, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0xEF, 0xEF, 0xEF, 0xEF, 0xEF, 0xEF, 0xEF, 0xEF,
+                    0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90,
+                    0x2F, 0x2F, 0x2F, 0x2F, 0x2F, 0x2F, 0x2F, 0x2F, 0xD9, 0xD9, 0xD9, 0xD9, 0xD9, 0xD9, 0xD9, 0xD9, 0xD3, 0xD3, 0xD3, 0xD3, 0xD3, 0xD3, 0xD3, 0xD3,
+                    0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x77, 0x4E, 0x4E, 0x4E, 0x4E, 0x4E, 0x4E, 0x4E, 0x4E, 0x67, 0x67, 0x67, 0x67, 0x67, 0x67, 0x67, 0x67,
+                    0xE0, 0xE0, 0xE0, 0xE0, 0xE0, 0xE0, 0xE0, 0xE0,
+    };
 uint8_t helper_data[] = {
-  1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0,
-  0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0,
-  1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1,
-  0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0,
-  0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1,
-  1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0,
-  0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-  1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1,
-  1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1,
-  1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1,
-  1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0,
-  0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1,
-  1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0,
-  0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1,
-  0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0,
-  1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0,
-  1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0,
-  0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0,
-  0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0,
-  1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0,
-  0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0,
-  0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1,
-  0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1,
-  1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0,
-  0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0,
-  1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1,
-  0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1,
-  1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0,
-  0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0,
-  1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0,
-  0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
-  1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0,
-  1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1,
-1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1,
+  0x13, 0xd1, 0xfc, 0x25, 0x8e, 0x7e, 0x3d,
+0x8d, 0x58, 0xa0, 0x81, 0xb, 0x71, 0x48,
+0x47, 0xab, 0x7e, 0x86, 0xa7, 0x2d, 0x57,
+0x75, 0xce, 0xfb, 0x85, 0x8d, 0xef, 0x71,
+0x7b, 0xd, 0x67, 0x9b, 0x8b, 0x4e, 0x73,
+0xf7, 0x48, 0x4c, 0x7d, 0x32, 0x75, 0x50,
+0xae, 0x6f, 0x63, 0x30, 0xe1, 0x28, 0x46,
+0x95, 0x2e, 0x1b, 0x65, 0x6d, 0xf, 0x91,
+0xcd, 0xe4, 0xc, 0xe8, 0x5f, 0x39, 0x96,
+0xdf, 0x68, 0xe, 0xa1, 0x60, 0x6c, 0x3f,
+0xc9, 0x39, 0x7a, 0x6e, 0x9a, 0xe8, 0xb3,
+0x40, 0xc2, 0xda, 0x7d, 0xde, 0x4c, 0x91,
+0x27, 0x1e, 0x33, 0xea, 0x41, 0xb1, 0xf2,
+0x98, 0x6c, 0x1e, 0x45, 0xf6, 0xa1, 0x41,
+0xae, 0xc0, 0xd, 0x52, 0xd0, 0xc8, 0x6f,
+0x48, 0x81, 0xef, 0x22, 0x7d, 0xff, 0xe7,
+0xe6, 0x80, 0x2f, 0xee, 0xe2, 0xb1, 0x60,
+0x5b, 0xa7, 0xb7, 0x72, 0x4f, 0x53, 0xc5,
+0x5e, 0x1d, 0x9, 0xfd, 0x8f, 0xd4, 0x67,
+0x58, 0x91, 0xff, 0x32, 0x6d, 0xef, 0xf7,
+0x7a, 0x82, 0xa3, 0x29, 0x53, 0x6a, 0x47,
+0xe6, 0x55, 0x2, 0xe2, 0x64, 0x4d, 0xa5,
+0x79, 0x71, 0x13, 0x8d, 0x3, 0x48, 0x3e,
+0x1b, 0x48, 0x99, 0x50, 0x3e, 0xf3, 0xac,
+0x7d, 0x99, 0x2e, 0x48, 0xe7, 0x26, 0x2a,
+0x45, 0xbd, 0x9c, 0x16, 0x6c, 0x55, 0x78,
+0x54, 0xda, 0x91, 0xe7, 0x8d, 0x71, 0x61,
+0x73, 0xf1, 0xe9, 0x4e, 0xed, 0x7f, 0xa2,
+0x52, 0xe9, 0xdc, 0xa2, 0xaa, 0xc8, 0x56,
+0xbd, 0x49, 0x3b, 0x60, 0xd3, 0x84, 0x64,
+0x68, 0xa, 0x94, 0x1a, 0x51, 0x27, 0x4d,
+0x14, 0x86, 0x5b, 0xc1, 0x7e, 0x7a, 0x4b,
+0x46, 0xd0, 0x3c, 0xe9, 0x11, 0x30, 0xba,
+0xbd, 0xf6, 0x80, 0xea, 0x16, 0x6, 0xc3,
+0xc0, 0x5, 0x38, 0x24, 0xb2, 0x5e, 0x8b,
+0x74, 0x4d, 0x60, 0xb9, 0x12, 0xe2, 0xa1,
+0xbc, 0x8d, 0xc2, 0x85, 0xa0, 0x1b, 0x2e,
 };
 
-uint8_t sz = 64;
-uint8_t puf_binary[64*37];
+uint8_t puf_binary_new[8*37];
 int inByte;
 
 int pin_hold = 11;
 int pin_select = 10;
 int pin_mosfet = 12;
 int pin_power = 8;
-
-int8_t * int_to_binary(int value, int length){
-  int8_t * result = (int8_t*)malloc(sizeof(int8_t)*length);
-  for (int i = 0; i < length; ++i) {
-    result[length-1-i] = (value >> i) & 1;
-    // Serial.print(result[length-1-i]);
-  }
-  // Serial.println();
-  return result;
-}
 
 void print_binary(uint8_t v)
 {
@@ -152,39 +113,6 @@ void print_binary(uint8_t v)
     }
 }
 
-void store_binary_puf(uint8_t v, int index)
-{
-//  Serial.print(index);
-//  Serial.print(" - \t");
-  int num_places = 8;
-  int mask=0, n,i;
-
-  for (n=1; n<=num_places; n++)
-  {
-    mask = (mask << 1) | 0x0001;
-  }
-  v = v & mask;  // truncate v to specified number of places
-
-  i=0;
-  while(num_places)
-  {
-    if (v & (0x0001 << num_places-1))
-    {
-      puf_binary[i+index]=1;
-//      Serial.print("1");
-    }
-    else
-    {
-//      Serial.print("0");
-      puf_binary[i+index]=0;
-    }
-
-    --num_places;
-    i++;
-  }
-//  Serial.println();
-}
-
 uint8_t Spi23LC1024Read8(uint32_t address, uint8_t cs_pin)
 {
   uint8_t read_byte;
@@ -211,37 +139,25 @@ void readSRAM(){
   delay(100);
 
   // read
+  index = 0;
   for (i = 0; i < 37; i++)
   {
-    result = Spi23LC1024Read8(puf_index_default[i], cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, i*sz);
-    result = Spi23LC1024Read8(puf_index_default[i]+1, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+8);
-    result = Spi23LC1024Read8(puf_index_default[i]+2, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+16);
-    result = Spi23LC1024Read8(puf_index_default[i]+3, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+24);
-    result = Spi23LC1024Read8(puf_index_default[i]+4, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+32);
-    result = Spi23LC1024Read8(puf_index_default[i]+5, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+40);
-    result = Spi23LC1024Read8(puf_index_default[i]+6, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+48);
-    result = Spi23LC1024Read8(puf_index_default[i]+7, cs_pin);
-    // print_binary(result);
-    store_binary_puf(result, (i*sz)+56);
-    // Serial.println();
+    for (j = 0; j < 8; j++){
+      result = Spi23LC1024Read8(puf_index_default[i], cs_pin);
+      puf_binary_new[index] = result;
+      // Serial.print("0x");
+      // Serial.print(puf_binary_new[index], HEX);
+      // Serial.print(",");
+      // Serial.print("0x");
+      // Serial.print(puf_binary_default[index], HEX);
+      // Serial.print(" - ");
+      index++;
+      // Serial.println();
+    }
+    // if ((i+1)%3==0)
+    //   Serial.println();
   }
 
-  Serial.println();
-  Serial.println();
 
   digitalWrite(pin_select, HIGH);
   //  digitalWrite(pin_hold, LOW);
@@ -250,6 +166,55 @@ void readSRAM(){
   digitalWrite(pin_power, LOW);
 
   SPI.end();
+}
+
+int difference_bin_array(uint8_t a[], uint8_t b[], int size) {
+    int count = 0;
+    int index = 0;
+    int shift = 0;
+    for (int i = 0; i < size; i++) {
+        shift = (7 - (i % 8));
+        // Serial.print((a[index] >> shift) & 0x1);
+        // Serial.print((b[index] >> shift) & 0x1);
+        // Serial.print(" ");
+        if (((a[index] >> shift) & 0x1) != ((b[index] >> shift) & 0x1)) {
+            count++;
+        }
+        if ((i + 1) % 8 == 0)
+            index++;
+    }
+    // Serial.println();
+    return count;
+}
+
+void check_difference(){
+  Serial.println();
+  int max_diff = 0;
+  int max_idx = 0;
+  int diff=0;
+  for (i=0;i<37;i++){
+    // Serial.print(i);
+    // Serial.print(" - ");
+    diff = 0;
+    for (j =0;j<8;j++){
+      diff += difference_bin_array(&puf_binary_new[i], &puf_binary_default[i], 8);
+      // Serial.print(diff);
+      // Serial.println(", ");
+      // Serial.print((int) &puf_binary_new[i], HEX);
+      // Serial.print(", ");
+      // Serial.print((int) &puf_binary_default[i], HEX);
+      // Serial.println();
+      if (diff > max_diff){
+        max_diff = diff;
+        max_idx = i;
+      }
+    }
+    // Serial.print(diff);
+  }
+  Serial.print("Max difference: ");
+  Serial.println(max_diff);
+  Serial.print("Max index: ");
+  Serial.println(max_idx);
 }
 
 void set(){
@@ -265,136 +230,93 @@ void set(){
   pinMode(pin_power, OUTPUT);
 }
 
+uint8_t encoded_new[8*37];
+uint8_t xor_enroll_new[8*37];
+uint8_t helper_data_new[7*37];
+uint8_t helper_data_padded_new[8*37];
+uint8_t xor_reproduction_new[8*37];
+uint8_t reconstructed_key_new[37];
+uint8_t key_per_row[37];
 
-int difference_array(uint8_t a[], uint8_t b[], int size) {
-  int count = 0;
-  for (n = 0; n < size; n++) {
-    if (a[n] != b[n]) {
-      Serial.print(a[n]);
-      Serial.print(" ");
-      Serial.print(b[n]);
-      Serial.print(" - ");
-      Serial.println();
-      count++;
-    }
+BCH bch;
+Tools tools;
+
+void decode(){
+  memset(helper_data_padded_new, 0, sizeof(helper_data_padded_new));
+  memset(xor_reproduction_new, 0, sizeof(xor_reproduction_new));
+  memset(reconstructed_key_new, 0, sizeof(reconstructed_key_new));
+  memset(key_per_row, 0, sizeof(key_per_row));
+
+  int row = 37;
+  int n = bch.get_n();
+  int k = bch.get_key_length();
+
+  int k_length_bit = row;//tools.ceil(k*row,8);
+  int n_length_bit = row * 8;//tools.ceil(n*row,8);
+
+  /************************************
+   ****** REPRODUCTION PROCEDURE ******
+   ************************************/
+  /******************** ASSERT HELPER DATA PADDED**********************/
+  Serial.println("HELPER DATA PADDED");
+  for (i = 0; i < row; i++) {
+      memcpy(&helper_data_padded_new[i * 8], &helper_data[i * 7],
+             7 * sizeof(uint8_t));
   }
 
-  return count;
-}
+  /******************** ASSERT XOR REPRODUCTION **********************/
+  Serial.println("XOR REPRODUCTION");
+  for (i = 0; i < row; i++) {
+     for (j = 0; j < 8; j++) {
+       // xor_reproduction_new[i*8 + j] = puf_binary_new[i*8 + j] ^ helper_data_padded_new[i*8 + j];
+       xor_reproduction_new[i*8 + j] = puf_binary_default[i*8 + j] ^ helper_data_padded_new[i*8 + j];
+     }
+  }
 
-// void check_difference(){
-//   Serial.println();
-//   int max_diff = 0;
-//   for (int i=0;i<37*sz;i=i+sz){
-//     int diff=difference_array(&puf_binary[i], &puf_binary_default[i], sz);
-//     if (diff > max_diff){
-//       max_diff = diff;
-//     }
-//
-//     Serial.print(i);
-//     Serial.print(" - ");
-//     Serial.print(diff);
-//     Serial.println(", ");
-//   }
-//   Serial.print("Max difference: ");
-//   Serial.println(max_diff);
-// }
-//
-// void print_array(uint8_t* input, int length){
-//   for (uint8_t i=0;i<length;i++){
-//     Serial.print(input[i]);
-//   }
-//   Serial.println();
-// }
+  /******************** ASSERT RECONSTRUCTED KEY **********************/
+  Serial.println("RECONSTRUCTED KEY");
+  int8_t input[64];
+  for (i = 0; i < row; i++) {
+      memset(input, 0, sizeof(input));
+      tools.convert_uint8_array_to_bin_array(&xor_reproduction_new[i*8], input, 8);
+    // bch.decode_bch(&xor_reproduction_new[i * 8], &reconstructed_key_new[i]);
+      bch.decode_bch_old(input, &reconstructed_key_new[i]);
+      // tools.print_binary(reconstructed_key_new[i]);
+      // Serial.println();
+  }
+
+  tools.gen_key_per_row(key_256, key_per_row);
+
+  for (i = 0; i < row; i++) {
+    Serial.print(i);
+    Serial.print(" - ");
+    tools.print_binary(key_per_row[i]);
+    Serial.print(" ");
+    tools.print_binary(reconstructed_key_new[i]);
+    if (key_per_row[i] == reconstructed_key_new[i]){
+      Serial.println(" TRUE");
+    }else{
+      Serial.println(" FALSE");
+    }
+  }
+}
 
 void setup(void)
 {
   set();
 
-  Serial.println();
-  Serial.println("START PUF DECODE");
+  Serial.println("READ");
 
   readSRAM();
+  check_difference();
 
-  // check_difference();
-  // Serial.println();
+  Serial.println("START PUF DECODE");
 
-
-  BCH bch;
-  Tools tools;
-
-  int m = bch.get_m();
-  int n = bch.get_n();
-  int k = bch.get_key_length();
-  int t = bch.get_t();
-  // int row = bch.get_row();
-  int row = 1;
-  Serial.println(m);
-  Serial.println(n);
-  Serial.println(k);
-  Serial.println(t);
-
+  bch = BCH();
+  tools = Tools();
   bch.initialize();               /* Read m */
 
-  /************************************
-  ****** REPRODUCTION PROCEDURE ******
-  ************************************/
-  Serial.println("PUF BINARY");
-  tools.print_array(puf_binary, n*row, n);
-
-  Serial.println("HELPER DATA PADDED");
-  int8_t *helper_data_padded = (int8_t *) calloc(n * row, sizeof(int8_t));
-  // tools.initialize_array(helper_data_padded, n * row, 0);
-  for (int i = 0; i < row; i++) {
-    memcpy(&helper_data_padded[i * n], &helper_data[i * (n - k)], (n - k) * sizeof(int8_t));
-  }
-  tools.print_array(helper_data_padded, n*row, n);
-
-  int8_t *xor_reproduction = (int8_t*)calloc(n * row, sizeof(int8_t));
-  // tools.initialize_array(xor_reproduction, n * row, 0);
-  Serial.println("XOR ");
-  tools.xor_array(puf_binary, helper_data_padded, xor_reproduction, n * row);
-  Serial.println("XOR REPRODUCTION");
-  tools.print_array(xor_reproduction, n*row, n);
-
-  // int8_t aa[] = {1, 1, 0, 1, 1};
-  // int8_t bb[] = {1, 0, 1, 0, 1};
-  // int8_t cc[5];
-  // tools.xor_array(aa, bb, cc, 5);
-  // tools.print_array(aa, 5, 5);
-  // tools.print_array(bb, 5, 5);
-  // tools.print_array(cc, 5, 5);
-
-  Serial.println("RECONSTRUCTED KEY");
-  int8_t *reconstructed_key = (int8_t *) calloc(k * row, sizeof(int8_t));
-  // for (int i = 0; i < row; i++) {
-    // bch.decode_bch(&xor_reproduction[i * n], &reconstructed_key[i * k]);
-    // bch.decode_bch(xor_reproduction, reconstructed_key);
-  // }
-  tools.print_array(reconstructed_key, k, k);
-
-  int8_t dummy[] = {0,0,0,1,0,0,1,1,0,0,1,0,1,0,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,0,1,1,1,0,1,0,1,1,0,0,0,0,1,0,1,1,1,0,0,0,1,1,0,0,1,1,1,0,1,0};
-  int8_t *dum_key = (int8_t *) calloc(k * row, sizeof(int8_t));
-  bch.decode_bch(dummy, dum_key);
-  tools.print_array(dum_key, 7, 7);
-
-  //     int total_diff = 0;
-  //     int diff_input, diff_key;
-  //     for (int i = 0; i < row; i++) {
-  // //        diff_input = tools.difference_array(&encoded[i * n], &xor_reproduction[i * n], n);
-  // //        printf("DIFFERENCE INPUT %d\n", diff_input);
-  // //        diff_input = tools.difference_array(&encoded[i * n], &xor_reproduction[i * n], n);
-  // //        printf("DIFFERENCE INPUT %d\n", diff_input);
-  //          // Serial.println("KEY");
-  //          // tools.print_array(&key[i * k], k, k);
-  //          // Serial.println("RECONSTRUCTED KEY");
-  //          // tools.print_array(&reconstructed_key[i * k], k, k);
-  //         diff_key = tools.difference_array(&key[i * k], &reconstructed_key[i * k], k);
-  //         Serial.print("DIFFERENCE KEY :");
-  //         Serial.println(diff_key);
-  //         if (diff_key > 0)
-  //             total_diff++;
-  //     }
+  decode();
 }
 
 

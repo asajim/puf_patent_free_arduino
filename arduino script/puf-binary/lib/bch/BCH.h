@@ -5,12 +5,7 @@
 #ifndef BCH_BCH_H
 #define BCH_BCH_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include <math.h>
-#include "string.h"
-#include "Arduino.h"
+#include "Tools.h"
 
 class BCH {
 private:
@@ -32,16 +27,24 @@ private:
     // int t = 31;
     // int d = 63;
 
-    int8_t *p;
-    int8_t *alpha_to;
-    int8_t *index_of;
-    int8_t *g;
-    int8_t row = ceil(256/k);
+    // int8_t *p;
+    // int8_t *alpha_to;
+    // int8_t *index_of;
+    // int8_t *g;
+    int8_t p[6];
+    int8_t alpha_to[64];
+    int8_t index_of[64];
+    int8_t g[56];
+
+    int8_t row = 37;
+
+    Tools tools;
 
 public:
     BCH();
 
-    void initialize();
+    void
+    initialize();
 
     void
     initialize_p();
@@ -53,22 +56,29 @@ public:
     gen_poly();
 
     void
-    encode_bch(const int8_t *input, int8_t *result);
+    encode_bch(uint8_t *input, uint8_t *result);
 
     void
-    decode_bch(int8_t *input, int8_t *result);
+    decode_bch(uint8_t *input, uint8_t *result);
+
+    void decode_bch_old(int8_t *input, uint8_t *result);
 
     int get_row();
 
-    int get_key_length();
+    int
+    get_key_length();
 
-    int get_n();
+    int
+    get_n();
 
-    int get_t();
+    int
+    get_t();
 
-    int get_m();
+    int
+    get_m();
 
-    void clean();
+    void
+    clean();
 };
 
 #endif //BCH_BCH_H
